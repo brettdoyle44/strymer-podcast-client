@@ -1,1 +1,15 @@
 @import '~bootstrap/scss/bootstrap';
+
+body {
+  background-color: #1d212c;
+}
+
+.btn-pink {
+  background-color: #ef1860;
+  color: #fff;
+}
+
+.btn-pink:hover {
+  opacity: 0.9;
+  color: #fff;
+}
