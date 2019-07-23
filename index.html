@@ -13,19 +13,27 @@
     </head>
     <body>
       <main class="container">
-        <div class="row">
-          <div class="col-6">
+
+        <div class="row justify-content-center">
+          <div class="col-8">
             Logo
           </div>
         </div>
-        <div class="row">
-          <div class="col-6">
+
+        <div class="row justify-content-center">
+          <div class="col-8">
             Sign-up to use Strymer Podcast
           </div>
         </div>
-        <div class="row">
-          <div class="col-6">
-            <form>
+
+        <div class="row justify-content-center">
+          <div id="message" class="col-6">
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <form id="sign-up">
               <div class="form-group">
                 <input class="form-control" required type="email" name="credentials[email]" placeholder="Email" aria-describedby="emailHelp">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. Except Facebook who will then share it with the world.</small>
@@ -36,8 +44,29 @@
               <div class="form-group">
                 <input class="form-control" required type="password" name="credentials[password_confirmation]" placeholder="Password Confirmation">
               </div>
-              <button type="submit" class="btn btn-pink">Sign-up</button>
+              <button type="submit" class="form-control btn btn-pink">Sign-up</button>
             </form>
+          </div>
+        </div>
+
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-8">
+            <form id="sign-in">
+              <div class="form-group">
+                <input class="form-control" required type="email" name="credentials[email]" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <input class="form-control" required type="password" name="credentials[password]" placeholder="Password">
+              </div>
+              <button type="submit" class="form-control btn btn-pink">Sign-in</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-8">
+            <button id="sign-out" class="btn btn-pink">Sign-out</button>
           </div>
         </div>
       </main>
