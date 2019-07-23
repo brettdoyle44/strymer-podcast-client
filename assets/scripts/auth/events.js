@@ -3,6 +3,8 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
+const podcastUi = require('../podcast/ui')
+const podcastApi = require('../podcast/api')
 
 const onSignUp = event => {
   event.preventDefault()
@@ -19,9 +21,9 @@ const onSignIn = event => {
   const formData = getFormFields(form)
   api.signIn(formData)
     .then(ui.signInSuccess)
-    .then(api.showPodcasts()
-      .then(ui.showPodcastsSuccess)
-      .catch(ui.showPodcastsFail))
+    .then(podcastApi.showPodcasts()
+      .then(podcastUi.showPodcastsSuccess)
+      .catch(podcastUi.showPodcastsFail))
     .catch(ui.signInFail)
 }
 
