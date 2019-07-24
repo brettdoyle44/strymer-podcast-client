@@ -63,9 +63,53 @@ const onPodcastAddClick = event => {
     .catch(ui.favoriteAddFail)
 }
 
+const onFavoriteList = event => {
+  event.preventDefault()
+  api.favoriteList()
+    .then(ui.favoriteListSuccess)
+    .catch(ui.favoriteListFail)
+}
+
+const onFavoriteListClick = event => {
+  event.preventDefault()
+  const target = event.target
+  console.log(target)
+  const index = $(target).data('favorite-list')
+  const currentPodcast = store.favoriteList.playlists[index]
+  console.log(currentPodcast)
+  $('.favorite-podcast').html('')
+  currentPodcast.podcasts.forEach(function (podcast, index) {
+    const podcastsHtml = (`
+      <div class="click-me col-4 mt-5">
+      <div class="card" style="width: 18rem;">
+      <img src="${podcast.image}" data-cell-index="${index}" class="card-img-top card-click" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">${podcast.title}</h5>
+        <p class="card-text">${podcast.publisher}</p>
+        </div>
+      </div>
+      </div>
+    `)
+
+    $('.favorite-podcast').append(podcastsHtml)
+  })
+}
+
+const onDeleteFavorite = event => {
+  event.preventDefault()
+  const target = event.target
+  const currentPlaylist = $(target).data('playlist-delete')
+  api.deleteFavorite(currentPlaylist)
+    .then(ui.favoriteListDeleteSuccess)
+    .catch(ui.favoriteListDeleteFail)
+}
+
 module.exports = {
   onPodcastClick,
   onFavoriteClick,
   onFavoriteSubmit,
-  onPodcastAddClick
+  onPodcastAddClick,
+  onFavoriteList,
+  onFavoriteListClick,
+  onDeleteFavorite
 }

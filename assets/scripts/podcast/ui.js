@@ -39,7 +39,7 @@ const showPodcastsFail = () => {
 
 const favoriteSubmitSuccess = responseData => {
   store.playlists = responseData
-  console.log(store.podcasts)
+  console.log(store.favoriteList)
   store.podcasts.forEach(function (podcast, index) {
     const podcastsHtml = (`
       <div class="click-me col-4 mt-5">
@@ -57,6 +57,12 @@ const favoriteSubmitSuccess = responseData => {
   })
 }
 
+const favoriteSubmitFail = () => {
+  $('#message').text('Something went wrong')
+  $('#message').removeClass('alert-success')
+  $('#message').addClass('alert-danger')
+}
+
 const favoriteAddSuccess = responseData => {
   $('#message').text('Podcast successfully added')
   $('#message').removeClass('alert-danger')
@@ -69,7 +75,39 @@ const favoriteAddFail = () => {
   $('#message').addClass('alert-danger')
 }
 
-const favoriteSubmitFail = () => {
+const favoriteListSuccess = responseData => {
+  store.favoriteList = responseData
+  console.log(store.favoriteList)
+  store.favoriteList.playlists.forEach(function (favorite, index) {
+    const podcastsHtml = (`
+      <div class="col-4 mt-5">
+      <div class="card favorite-card" style="width: 18rem;" data-favorite-list="${index}">
+        <div class="card-body" data-favorite-list="${index}">
+          <h5 class="card-title" data-favorite-list="${index}">${favorite.title}</h5>
+          <p class="card-text" data-favorite-list="${index}">You have ${favorite.podcasts.length} podcasts in this list.</p>
+        </div>
+        </div>
+        <button id="delete-favorite" class="btn btn-pink" data-playlist-delete="${store.favoriteList.playlists[index].id}">Delete This List</button>
+      </div>
+      </div>
+    `)
+    $('.favorite-list').append(podcastsHtml)
+  })
+}
+
+const favoriteListFail = () => {
+  $('#message').text('Podcast not added')
+  $('#message').removeClass('alert-success')
+  $('#message').addClass('alert-danger')
+}
+
+const favoriteListDeleteSuccess = responseData => {
+  $('#message').text('Favorite list successfully deleted')
+  $('#message').removeClass('alert-danger')
+  $('#message').addClass('alert-success')
+}
+
+const favoriteListDeleteFail = () => {
   $('#message').text('Something went wrong')
   $('#message').removeClass('alert-success')
   $('#message').addClass('alert-danger')
@@ -81,5 +119,9 @@ module.exports = {
   favoriteSubmitSuccess,
   favoriteSubmitFail,
   favoriteAddFail,
-  favoriteAddSuccess
+  favoriteAddSuccess,
+  favoriteListSuccess,
+  favoriteListFail,
+  favoriteListDeleteSuccess,
+  favoriteListDeleteFail
 }

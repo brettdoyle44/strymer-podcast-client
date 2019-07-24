@@ -38,8 +38,30 @@ const favoriteAdd = (currentPodcast, currentPlaylist) => {
   })
 }
 
+const favoriteList = () => {
+  return $.ajax({
+    url: config.apiUrl + '/playlists',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+const deleteFavorite = (currentPlaylist) => {
+  return $.ajax({
+    url: config.apiUrl + '/playlists/' + currentPlaylist,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   showPodcasts,
   favoriteSubmit,
-  favoriteAdd
+  favoriteAdd,
+  favoriteList,
+  deleteFavorite
 }
