@@ -53,8 +53,19 @@ const onFavoriteSubmit = event => {
     .catch(ui.favoriteSubmitFail)
 }
 
+const onPodcastAddClick = event => {
+  event.preventDefault()
+  const target = event.target
+  const currentPodcast = $(target).data('podcast')
+  const currentPlaylist = store.playlists.playlist.id
+  api.favoriteAdd(currentPodcast, currentPlaylist)
+    .then(ui.favoriteAddSuccess)
+    .catch(ui.favoriteAddFail)
+}
+
 module.exports = {
   onPodcastClick,
   onFavoriteClick,
-  onFavoriteSubmit
+  onFavoriteSubmit,
+  onPodcastAddClick
 }

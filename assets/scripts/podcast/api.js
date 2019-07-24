@@ -22,7 +22,24 @@ const favoriteSubmit = formData => {
   })
 }
 
+const favoriteAdd = (currentPodcast, currentPlaylist) => {
+  return $.ajax({
+    url: config.apiUrl + '/playlist_podcasts',
+    data: {
+      playlist_podcast: {
+        podcast_id: currentPodcast,
+        playlist_id: currentPlaylist
+      }
+    },
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   showPodcasts,
-  favoriteSubmit
+  favoriteSubmit,
+  favoriteAdd
 }

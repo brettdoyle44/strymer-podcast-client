@@ -20,7 +20,6 @@ const showPodcastsSuccess = responseData => {
     `)
 
     $('.podcast-index').append(podcastsHtml)
-    // store.podcastId = responseData.podcasts.id
   })
 }
 
@@ -39,11 +38,35 @@ const showPodcastsFail = () => {
 }
 
 const favoriteSubmitSuccess = responseData => {
-  $('#message').text('You are now signed in!')
+  store.playlists = responseData
+  console.log(store.podcasts)
+  store.podcasts.forEach(function (podcast, index) {
+    const podcastsHtml = (`
+      <div class="click-me col-4 mt-5">
+      <div class="card" style="width: 18rem;">
+        <img src="${podcast.image}" data-cell-index="${index}" data-podcast="${podcast.id}" class="card-img-top card-click-add" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${podcast.title}</h5>
+          <p class="card-text">${podcast.publisher}</p>
+        </div>
+      </div>
+      </div>
+    `)
+
+    $('.favorite-index').append(podcastsHtml)
+  })
+}
+
+const favoriteAddSuccess = responseData => {
+  $('#message').text('Podcast successfully added')
   $('#message').removeClass('alert-danger')
   $('#message').addClass('alert-success')
-  $('form').trigger('reset')
-  console.log(responseData)
+}
+
+const favoriteAddFail = () => {
+  $('#message').text('Podcast not added')
+  $('#message').removeClass('alert-success')
+  $('#message').addClass('alert-danger')
 }
 
 const favoriteSubmitFail = () => {
@@ -56,5 +79,7 @@ module.exports = {
   showPodcastsSuccess,
   showPodcastsFail,
   favoriteSubmitSuccess,
-  favoriteSubmitFail
+  favoriteSubmitFail,
+  favoriteAddFail,
+  favoriteAddSuccess
 }
