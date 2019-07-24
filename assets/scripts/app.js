@@ -1,6 +1,7 @@
 'use strict'
 
 const authEvents = require('./auth/events')
+const podcastEvents = require('./podcast/events')
 
 $(() => {
   // auth events
@@ -9,5 +10,5 @@ $(() => {
   $('#sign-out').on('click', authEvents.onSignOut)
 
   // podcast events
-  $('#sign-out').on('click', authEvents.onSignOut)
+  $('.podcast-index').on('click', '.card', podcastEvents.onPodcastClick)
 })
