@@ -30,6 +30,31 @@ const onPodcastClick = event => {
   })
 }
 
+const onFavoriteClick = event => {
+  event.preventDefault()
+  $('.favorite').html('')
+  const podcastsHtml = (`
+        <form id="favorite-create">
+          <div class="form-group">
+            <input class="form-control" required type="text" name="playlist[title]" placeholder="Name your favorites list">
+          </div>
+          <button type="submit" class="form-control btn btn-pink">Create Favorite List</button>
+        </form>
+  `)
+  $('.favorite').append(podcastsHtml)
+}
+
+const onFavoriteSubmit = event => {
+  event.preventDefault()
+  const form = event.target
+  const formData = getFormFields(form)
+  api.favoriteSubmit(formData)
+    .then(ui.favoriteSubmitSuccess)
+    .catch(ui.favoriteSubmitFail)
+}
+
 module.exports = {
-  onPodcastClick
+  onPodcastClick,
+  onFavoriteClick,
+  onFavoriteSubmit
 }

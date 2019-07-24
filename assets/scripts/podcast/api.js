@@ -2,7 +2,7 @@
 
 const config = require('../config')
 
-// const store = require('../store')
+const store = require('../store')
 
 const showPodcasts = () => {
   return $.ajax({
@@ -11,6 +11,18 @@ const showPodcasts = () => {
   })
 }
 
+const favoriteSubmit = formData => {
+  return $.ajax({
+    url: config.apiUrl + '/playlists',
+    data: formData,
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
-  showPodcasts
+  showPodcasts,
+  favoriteSubmit
 }

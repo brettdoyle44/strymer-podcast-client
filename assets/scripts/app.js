@@ -11,4 +11,6 @@ $(() => {
 
   // podcast events
   $('.podcast-index').on('click', '.card', podcastEvents.onPodcastClick)
+  $('#favorites').on('click', podcastEvents.onFavoriteClick)
+  $('body').on('submit', '#favorite-create', podcastEvents.onFavoriteSubmit)
 })

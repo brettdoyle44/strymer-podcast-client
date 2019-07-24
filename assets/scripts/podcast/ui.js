@@ -38,7 +38,23 @@ const showPodcastsFail = () => {
   $('#message').addClass('alert-danger')
 }
 
+const favoriteSubmitSuccess = responseData => {
+  $('#message').text('You are now signed in!')
+  $('#message').removeClass('alert-danger')
+  $('#message').addClass('alert-success')
+  $('form').trigger('reset')
+  console.log(responseData)
+}
+
+const favoriteSubmitFail = () => {
+  $('#message').text('Something went wrong')
+  $('#message').removeClass('alert-success')
+  $('#message').addClass('alert-danger')
+}
+
 module.exports = {
   showPodcastsSuccess,
-  showPodcastsFail
+  showPodcastsFail,
+  favoriteSubmitSuccess,
+  favoriteSubmitFail
 }
