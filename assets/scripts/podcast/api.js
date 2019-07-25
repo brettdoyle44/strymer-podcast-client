@@ -58,10 +58,22 @@ const deleteFavorite = (currentPlaylist) => {
   })
 }
 
+const editFavorite = (currentPlaylist, formData) => {
+  return $.ajax({
+    url: config.apiUrl + '/playlists/' + currentPlaylist,
+    method: 'PATCH',
+    data: formData,
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   showPodcasts,
   favoriteSubmit,
   favoriteAdd,
   favoriteList,
-  deleteFavorite
+  deleteFavorite,
+  editFavorite
 }

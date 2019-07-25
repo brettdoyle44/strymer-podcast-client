@@ -104,6 +104,16 @@ const onDeleteFavorite = event => {
     .catch(ui.favoriteListDeleteFail)
 }
 
+const onEditFavoriteSubmit = event => {
+  event.preventDefault()
+  const target = event.target
+  const currentPlaylist = $(target).data('playlist-edit')
+  const formData = getFormFields(target)
+  api.editFavorite(currentPlaylist, formData)
+    .then(ui.favoriteListEditSuccess)
+    .catch(ui.favoriteListEditFail)
+}
+
 module.exports = {
   onPodcastClick,
   onFavoriteClick,
@@ -111,5 +121,6 @@ module.exports = {
   onPodcastAddClick,
   onFavoriteList,
   onFavoriteListClick,
-  onDeleteFavorite
+  onDeleteFavorite,
+  onEditFavoriteSubmit
 }
