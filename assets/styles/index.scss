@@ -1,5 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
 
+h3 {
+  color: #ffffff;
+  text-align: center;
+}
 
 body {
   background-color: #1d212c;
@@ -28,4 +32,8 @@ body {
 .favorite-card:hover {
   cursor: pointer;
   opacity: 0.9;
+}
+
+.hide {
+  display: none;
 }

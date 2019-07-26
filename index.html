@@ -12,26 +12,89 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
+
       <main class="container">
 
-        <div class="row justify-content-center">
-          <div class="col-8">
-            Logo
+
+
+        <div class="row top-area justify-content-center mt-5 hide">
+          <div class="col-4 text-center">
+            <button id="settings" class="btn btn-pink"><i class="fas fa-cog"></i></button>
+          </div>
+          <div class="col-4 text-center">
+            <img src="../assets/img/Strymer Final Standalone Icon.png" width="50" class="justify-content-center">
+          </div>
+          <div class="col-4 text-center">
+          <button id="favorites-open" class="btn btn-pink">Favorites</button>
+        </div>
+      </div>
+
+
+
+<div class="row justify-content-center mt-5">
+  <div class="col-6">
+    <button class="btn btn-pink hide" type="button" data-toggle="collapse" data-target="#passwordCollapse" aria-expanded="false" aria-controls="collapseExample" id="password-btn">
+Change Your Password
+</button>
+</div>
+<div class="col-6">
+    <button id="sign-out" class="btn btn-pink hide">Sign-out</button>
+  </div>
+</div>
+
+      <div class="collapse" id="passwordCollapse">
+    <form id="change-password" class="col-6">
+      <h2>Reset Password</h2>
+      <input class="form-control mb-1" required type="password" name="passwords[old]" placeholder="Old password...">
+      <input class="form-control mb-1" required type="password" name="passwords[new]" placeholder="New password...">
+      <button class="btn btn-outline-light" type="submit">Reset password</button>
+    </form>
+    </div>
+
+
+        <div class="row justify-content-center mt-5 strymer-logo">
+          <img src="../assets/img/Strymer Final Standalone Icon.png" width="150">
+          </div>
+
+        <div class="row justify-content-center strymer-welcome">
+          <div class="col-8 py-4">
+            <h3>WELCOME TO STRYMER PODCAST</h3>
           </div>
         </div>
 
-        <div class="row justify-content-center">
-          <div class="col-8">
-            Sign-up to use Strymer Podcast
+        <div class="row justify-content-center mt-3">
+          <div id="message" class="col-6 mb-4 text-center">
           </div>
         </div>
 
-        <div class="row justify-content-center">
-          <div id="message" class="col-6">
-          </div>
+        <div class="row justify-content-center favorite favorite-buttons py-5 hide">
+          <button id="favorites" class="btn btn-pink">Create a Favorites List</button>
+        </div>
+        <div class="row justify-content-center favorite-buttons hide">
+          <button id="list-favorites" class="btn btn-pink">See All Favorites</button>
         </div>
 
-        <div class="row justify-content-center">
+
+        <div class="row justify-content-center favorite-podcast">
+
+        </div>
+
+        <div class="row justify-content-center favorite-list">
+
+        </div>
+
+        <div class="row justify-content-center favorite-index">
+
+        </div>
+
+      <div class="row justify-content-center podcast-index">
+
+      </div>
+      <div class="row justify-content-center episode-index">
+
+      </div>
+
+        <div class="row justify-content-center sign-up-row">
           <div class="col-8">
             <form id="sign-up">
               <div class="form-group">
@@ -49,8 +112,14 @@
           </div>
         </div>
 
+        <div class="row justify-content-center or-text">
+          <div class="col-6 py-4">
+            <h3>-OR-</h3>
+          </div>
+        </div>
 
-        <div class="row justify-content-center mt-5">
+
+        <div class="row justify-content-center sign-in-row">
           <div class="col-8">
             <form id="sign-in">
               <div class="form-group">
@@ -64,44 +133,21 @@
           </div>
         </div>
 
+
+
+
+
         <div class="row justify-content-center mt-5">
           <div class="col-8">
-            <button id="sign-out" class="btn btn-pink">Sign-out</button>
+            <button id="favorites" class="btn btn-pink hide">Create a Favorites List</button>
           </div>
         </div>
 
         <div class="row justify-content-center mt-5">
           <div class="col-8">
-            <button id="favorites" class="btn btn-pink">Create a Favorites List</button>
+            <button id="list-favorites" class="btn btn-pink hide">See All Favorites</button>
           </div>
         </div>
-
-        <div class="row justify-content-center mt-5">
-          <div class="col-8">
-            <button id="list-favorites" class="btn btn-pink">See All Favorites</button>
-          </div>
-        </div>
-        <div class="row justify-content-center mt-5 favorite-podcast">
-
-        </div>
-
-        <div class="row justify-content-center mt-5 favorite-list">
-
-        </div>
-
-        <div class="row justify-content-center mt-5 favorite">
-
-        </div>
-        <div class="row justify-content-center mt-5 favorite-index">
-
-        </div>
-
-      <div class="row justify-content-center mt-5 podcast-index">
-
-      </div>
-      <div class="row justify-content-center mt-5 episode-index">
-
-      </div>
 
       </main>
 

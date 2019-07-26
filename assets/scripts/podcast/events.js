@@ -4,6 +4,8 @@ const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
+const showPodcastsTemplate = require('../templates/episode-list.handlebars')
+const clickFavoritesTemplate = require('../templates/favorite-click.handlebars')
 
 const onPodcastClick = event => {
   event.preventDefault()
@@ -11,27 +13,14 @@ const onPodcastClick = event => {
   const index = $(target).data('cell-index')
   const currentPodcast = store.podcasts[index]
   $('.episode-index').html('')
-  currentPodcast.episodes.forEach(function (episode) {
-    const episodeAudio = new Audio(episode.audio)
-    const podcastsHtml = (`
-      <div class="click-me col-4 mt-5">
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">${episode.title}</h5>
-          <p class="card-text">${episode.description}</p>
-          <i class="fas fa-play"></i>
-        </div>
-      </div>
-      </div>
-    `)
-
-    $('.episode-index').append(podcastsHtml)
-    console.log(episodeAudio)
-  })
+  const podcastsHtml = showPodcastsTemplate({ episodes: currentPodcast.episodes })
+  $('.episode-index').append(podcastsHtml)
+  // const episodeAudio = new Audio(episode.audio)
 }
 
 const onFavoriteClick = event => {
   event.preventDefault()
+  $('#favorites').addClass('hide')
   $('.favorite').html('')
   const podcastsHtml = (`
         <form id="favorite-create">
@@ -42,6 +31,12 @@ const onFavoriteClick = event => {
         </form>
   `)
   $('.favorite').append(podcastsHtml)
+}
+
+const onFavoriteOpen = event => {
+  event.preventDefault()
+  $('.podcast-index').addClass('hide')
+  $('.favorite-buttons').removeClass('hide')
 }
 
 const onFavoriteSubmit = event => {
@@ -78,21 +73,8 @@ const onFavoriteListClick = event => {
   const currentPodcast = store.favoriteList.playlists[index]
   console.log(currentPodcast)
   $('.favorite-podcast').html('')
-  currentPodcast.podcasts.forEach(function (podcast, index) {
-    const podcastsHtml = (`
-      <div class="click-me col-4 mt-5">
-      <div class="card" style="width: 18rem;">
-      <img src="${podcast.image}" data-cell-index="${index}" class="card-img-top card-click" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">${podcast.title}</h5>
-        <p class="card-text">${podcast.publisher}</p>
-        </div>
-      </div>
-      </div>
-    `)
-
-    $('.favorite-podcast').append(podcastsHtml)
-  })
+  const podcastsHtml = clickFavoritesTemplate({ podcasts: currentPodcast.podcasts })
+  $('.favorite-podcast').append(podcastsHtml)
 }
 
 const onDeleteFavorite = event => {
@@ -122,5 +104,6 @@ module.exports = {
   onFavoriteList,
   onFavoriteListClick,
   onDeleteFavorite,
-  onEditFavoriteSubmit
+  onEditFavoriteSubmit,
+  onFavoriteOpen
 }

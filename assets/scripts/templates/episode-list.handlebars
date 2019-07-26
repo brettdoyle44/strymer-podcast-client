@@ -1,0 +1,12 @@
+{{#each episodes as |episode|}}
+const episodeAudio = new Audio(episode.audio)
+<div class="click-me col-4 mt-5">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{episode.title}}</h5>
+      <p class="card-text">{{episode.description}}</p>
+      <i class="fas fa-play"></i>
+    </div>
+  </div>
+</div>
+{{/each}}

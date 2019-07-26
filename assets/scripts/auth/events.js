@@ -27,6 +27,16 @@ const onSignIn = event => {
     .catch(ui.signInFail)
 }
 
+const onSettingButton = event => {
+  event.preventDefault()
+  $('.podcast-index').addClass('hide')
+  $('.favorite-index').addClass('hide')
+  $('.episode-index').addClass('hide')
+  $('.favorite-podcast').addClass('hide')
+  $('#password-btn').removeClass('hide')
+  $('#sign-out').removeClass('hide')
+}
+
 const onSignOut = event => {
   event.preventDefault()
   api.signOut()
@@ -34,8 +44,19 @@ const onSignOut = event => {
     .catch(ui.signOutFail)
 }
 
+const onChangePass = event => {
+  event.preventDefault()
+  const form = event.target
+  const formData = getFormFields(form)
+  api.changePass(formData)
+    .then(ui.changePassSuccessful)
+    .catch(ui.changePassFailure)
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
-  onSignOut
+  onSignOut,
+  onChangePass,
+  onSettingButton
 }
