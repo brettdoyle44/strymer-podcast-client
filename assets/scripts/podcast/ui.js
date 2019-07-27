@@ -4,10 +4,19 @@ const store = require('../store')
 const showPodcastsTemplate = require('../templates/podcast-list.handlebars')
 const indexFavoritesTemplate = require('../templates/favorite-index.handlebars')
 const showFavoritesTemplate = require('../templates/favorite-list.handlebars')
+const showNavbarTemplate = require('../templates/navbar.handlebars')
+const showPodcastIndex = require('../templates/podcast-index-div.handlebars')
+const showPlaybar = require('../templates/playbar.handlebars')
 
 const showPodcastsSuccess = responseData => {
   store.podcasts = responseData.podcasts
-  $('.podcast-index').html('')
+  $('main').empty()
+  const navbar = showNavbarTemplate()
+  const podcastIndex = showPodcastIndex()
+  const playBar = showPlaybar()
+  $('body').prepend(navbar)
+  $('main').append(podcastIndex)
+  $('main').append(playBar)
   const podcastsHtml = showPodcastsTemplate({ podcasts: store.podcasts })
   $('.podcast-index').append(podcastsHtml)
 }

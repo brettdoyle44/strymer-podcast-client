@@ -6,6 +6,14 @@ const ui = require('./ui')
 const podcastUi = require('../podcast/ui')
 const podcastApi = require('../podcast/api')
 
+const showAccountPage = require('../templates/account-page.handlebars')
+
+const removeActive = () => {
+  $('#favorites').removeClass('nav-active')
+  $('#settings').removeClass('nav-active')
+  $('#home').removeClass('nav-active')
+}
+
 const onSignUp = event => {
   event.preventDefault()
   const form = event.target
@@ -29,12 +37,11 @@ const onSignIn = event => {
 
 const onSettingButton = event => {
   event.preventDefault()
-  $('.podcast-index').addClass('hide')
-  $('.favorite-index').addClass('hide')
-  $('.episode-index').addClass('hide')
-  $('.favorite-podcast').addClass('hide')
-  $('#password-btn').removeClass('hide')
-  $('#sign-out').removeClass('hide')
+  removeActive()
+  $('main').empty()
+  const accountPage = showAccountPage()
+  $('#settings').addClass('nav-active')
+  $('main').append(accountPage)
 }
 
 const onSignOut = event => {

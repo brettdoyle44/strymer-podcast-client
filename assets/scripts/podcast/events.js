@@ -4,24 +4,41 @@ const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
-const showPodcastsTemplate = require('../templates/episode-list.handlebars')
+const showEpisodesTemplate = require('../templates/episode-list.handlebars')
+const showPodcastsTemplate = require('../templates/podcast-list.handlebars')
 const clickFavoritesTemplate = require('../templates/favorite-click.handlebars')
+const showEpisodesDivTemplate = require('../templates/episode-index-div.handlebars')
+const showEpisodePodcastTemplate = require('../templates/episode-podcast-info.handlebars')
+const showPodcastIndex = require('../templates/podcast-index-div.handlebars')
+// const showPlaybar = require('../templates/playbar.handlebars')
+
+const removeActive = () => {
+  $('#favorites').removeClass('nav-active')
+  $('#settings').removeClass('nav-active')
+  $('#home').removeClass('nav-active')
+}
 
 const onPodcastClick = event => {
   event.preventDefault()
   const target = event.target
+  removeActive()
+  $('main').empty()
   const index = $(target).data('cell-index')
   const currentPodcast = store.podcasts[index]
-  $('.episode-index').html('')
-  const podcastsHtml = showPodcastsTemplate({ episodes: currentPodcast.episodes })
-  $('.episode-index').append(podcastsHtml)
+  const episodePodcast = showEpisodePodcastTemplate({currentPodcast})
+  const episodeIndex = showEpisodesDivTemplate()
+  $('main').append(episodePodcast)
+  $('main').append(episodeIndex)
+  const podcastsHtml = showEpisodesTemplate({ episodes: currentPodcast.episodes })
+  $('.episode-list').append(podcastsHtml)
   // const episodeAudio = new Audio(episode.audio)
 }
 
 const onFavoriteClick = event => {
   event.preventDefault()
-  $('#favorites').addClass('hide')
-  $('.favorite').html('')
+  removeActive()
+  $('main').empty()
+  $('#favorites').addClass('nav-active')
   const podcastsHtml = (`
         <form id="favorite-create">
           <div class="form-group">
@@ -31,6 +48,17 @@ const onFavoriteClick = event => {
         </form>
   `)
   $('.favorite').append(podcastsHtml)
+}
+
+const onHomeClick = event => {
+  event.preventDefault()
+  removeActive()
+  $('#home').addClass('nav-active')
+  $('main').empty()
+  const podcastIndex = showPodcastIndex()
+  $('main').append(podcastIndex)
+  const podcastsHtml = showPodcastsTemplate({ podcasts: store.podcasts })
+  $('.podcast-index').append(podcastsHtml)
 }
 
 const onFavoriteOpen = event => {
@@ -105,5 +133,6 @@ module.exports = {
   onFavoriteListClick,
   onDeleteFavorite,
   onEditFavoriteSubmit,
-  onFavoriteOpen
+  onFavoriteOpen,
+  onHomeClick
 }

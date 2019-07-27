@@ -9,6 +9,14 @@ body {
   background-color: #1d212c;
 }
 
+.podcast-text {
+  color: #ffffff;
+}
+.nav-active {
+  background-color: #ef1860;
+  border-radius: 5px;
+}
+
 .btn-pink {
   background-color: #ef1860;
   color: #fff;
@@ -36,4 +44,53 @@ body {
 
 .hide {
   display: none;
+}
+
+.nav-hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+  background-color: red;
+}
+
+/* When you mouse over the container, fade in the overlay icon*/
+.container:hover .overlay {
+  opacity: 0.5;
+}
+
+/* The icon inside the overlay is positioned in the middle vertically and horizontally */
+.icon {
+  color: white;
+  font-size: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* When you move the mouse over the icon, change color */
+.fa-plus:hover {
+  color: #eee;
+}
+
+.fa-play-circle {
+  color: #ef1860;
+  font-size: 50px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  margin-bottom: 15px;
+  border: 1px solid #ffffff;
 }

@@ -1,155 +1,123 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Example</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-      <script src="https://kit.fontawesome.com/a2bd9b1bcc.js"></script>
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
+<head>
+  <title>Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <main class="container">
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <script src="https://kit.fontawesome.com/a2bd9b1bcc.js"></script>
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
 
+<body>
+  <main class="container">
 
-
-        <div class="row top-area justify-content-center mt-5 hide">
-          <div class="col-4 text-center">
-            <button id="settings" class="btn btn-pink"><i class="fas fa-cog"></i></button>
-          </div>
-          <div class="col-4 text-center">
-            <img src="../assets/img/Strymer-Final-Standalone-Icon.png" width="50" class="justify-content-center">
-          </div>
-          <div class="col-4 text-center">
-          <button id="favorites-open" class="btn btn-pink">Favorites</button>
-        </div>
+    <div class="row justify-content-center mt-5">
+      <div class="col-6">
+        <button id="sign-out" class="btn btn-pink hide">Sign-out</button>
       </div>
-
-
-
-<div class="row justify-content-center mt-5">
-  <div class="col-6">
-    <button class="btn btn-pink hide" type="button" data-toggle="collapse" data-target="#passwordCollapse" aria-expanded="false" aria-controls="collapseExample" id="password-btn">
-Change Your Password
-</button>
-</div>
-<div class="col-6">
-    <button id="sign-out" class="btn btn-pink hide">Sign-out</button>
-  </div>
-</div>
-
-      <div class="collapse" id="passwordCollapse">
-    <form id="change-password" class="col-6">
-      <h2>Reset Password</h2>
-      <input class="form-control mb-1" required type="password" name="passwords[old]" placeholder="Old password...">
-      <input class="form-control mb-1" required type="password" name="passwords[new]" placeholder="New password...">
-      <button class="btn btn-outline-light" type="submit">Reset password</button>
-    </form>
     </div>
 
 
-        <div class="row justify-content-center mt-5 strymer-logo">
-          <img src="../assets/img/Strymer Final Standalone Icon.png" width="150">
-          </div>
+    <div class="row justify-content-center mt-5 strymer-logo">
+      <img src="../assets/img/Strymer-Final-Standalone-Icon.png" width="150">
+    </div>
 
-        <div class="row justify-content-center strymer-welcome">
-          <div class="col-8 py-4">
-            <h3>WELCOME TO STRYMER PODCAST</h3>
-          </div>
-        </div>
-
-        <div class="row justify-content-center mt-3">
-          <div id="message" class="col-6 mb-4 text-center">
-          </div>
-        </div>
-
-        <div class="row justify-content-center favorite favorite-buttons py-5 hide">
-          <button id="favorites" class="btn btn-pink">Create a Favorites List</button>
-        </div>
-        <div class="row justify-content-center favorite-buttons hide">
-          <button id="list-favorites" class="btn btn-pink">See All Favorites</button>
-        </div>
-
-
-        <div class="row justify-content-center favorite-podcast">
-
-        </div>
-
-        <div class="row justify-content-center favorite-list">
-
-        </div>
-
-        <div class="row justify-content-center favorite-index">
-
-        </div>
-
-      <div class="row justify-content-center podcast-index">
-
+    <div class="row justify-content-center strymer-welcome">
+      <div class="col-8 py-4">
+        <h3><strong>WELCOME TO STRYMER PODCAST</strong></h3>
       </div>
-      <div class="row justify-content-center episode-index">
+    </div>
 
+    <div class="row justify-content-center mt-3">
+      <div id="message" class="col-6 mb-4 text-center">
       </div>
+    </div>
 
-        <div class="row justify-content-center sign-up-row">
-          <div class="col-8">
-            <form id="sign-up">
-              <div class="form-group">
-                <input class="form-control" required type="email" name="credentials[email]" placeholder="Email" aria-describedby="emailHelp">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. Except Facebook who will then share it with the world.</small>
-              </div>
-              <div class="form-group">
-                <input class="form-control" required type="password" name="credentials[password]" placeholder="Password">
-              </div>
-              <div class="form-group">
-                <input class="form-control" required type="password" name="credentials[password_confirmation]" placeholder="Password Confirmation">
-              </div>
-              <button type="submit" class="form-control btn btn-pink">Sign-up</button>
-            </form>
+    <div class="row justify-content-center favorite favorite-buttons py-5 hide">
+      <button id="favorites" class="btn btn-pink">Create a Favorites List</button>
+    </div>
+    <div class="row justify-content-center favorite-buttons hide">
+      <button id="list-favorites" class="btn btn-pink">See All Favorites</button>
+    </div>
+
+
+    <div class="row justify-content-center favorite-podcast">
+
+    </div>
+
+    <div class="row justify-content-center favorite-list">
+
+    </div>
+
+    <div class="row justify-content-center favorite-index">
+
+    </div>
+
+
+
+
+    <div class="row justify-content-center sign-up-row">
+      <div class="col-8">
+        <form id="sign-up">
+          <div class="form-group">
+            <input class="form-control" required type="email" name="credentials[email]" placeholder="Email" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. Except Facebook who will then share it with the world.</small>
           </div>
-        </div>
-
-        <div class="row justify-content-center or-text">
-          <div class="col-6 py-4">
-            <h3>-OR-</h3>
+          <div class="form-group">
+            <input class="form-control" required type="password" name="credentials[password]" placeholder="Password">
           </div>
-        </div>
-
-
-        <div class="row justify-content-center sign-in-row">
-          <div class="col-8">
-            <form id="sign-in">
-              <div class="form-group">
-                <input class="form-control" required type="email" name="credentials[email]" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <input class="form-control" required type="password" name="credentials[password]" placeholder="Password">
-              </div>
-              <button type="submit" class="form-control btn btn-pink">Sign-in</button>
-            </form>
+          <div class="form-group">
+            <input class="form-control" required type="password" name="credentials[password_confirmation]" placeholder="Password Confirmation">
           </div>
-        </div>
+          <button type="submit" class="form-control btn btn-pink">Sign-up</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="row justify-content-center or-text">
+      <div class="col-6 py-4">
+        <h3>-OR-</h3>
+      </div>
+    </div>
 
 
-
-
-
-        <div class="row justify-content-center mt-5">
-          <div class="col-8">
-            <button id="favorites" class="btn btn-pink hide">Create a Favorites List</button>
+    <div class="row justify-content-center sign-in-row">
+      <div class="col-8">
+        <form id="sign-in">
+          <div class="form-group">
+            <input class="form-control" required type="email" name="credentials[email]" placeholder="Email">
           </div>
-        </div>
-
-        <div class="row justify-content-center mt-5">
-          <div class="col-8">
-            <button id="list-favorites" class="btn btn-pink hide">See All Favorites</button>
+          <div class="form-group">
+            <input class="form-control" required type="password" name="credentials[password]" placeholder="Password">
           </div>
-        </div>
+          <button type="submit" class="form-control btn btn-pink">Sign-in</button>
+        </form>
+      </div>
+    </div>
 
-      </main>
 
-    </body>
+
+
+
+    <div class="row justify-content-center mt-5">
+      <div class="col-8">
+        <button id="favorites" class="btn btn-pink hide">Create a Favorites List</button>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+      <div class="col-8">
+        <button id="list-favorites" class="btn btn-pink hide">See All Favorites</button>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+
 </html>

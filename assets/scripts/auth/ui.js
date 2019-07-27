@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const showIntroScreen = require('../templates/sign-up.handlebars')
 
 const signUpSuccess = responseData => {
   $('#message').text('You signed-up successfully, please sign-in.')
@@ -23,13 +24,12 @@ const signInSuccess = responseData => {
   $('#message').removeClass('alert-danger')
   $('#message').addClass('alert-success')
   $('form').trigger('reset')
-  $('.sign-up-row').addClass('hide')
-  $('.sign-in-row').addClass('hide')
-  $('.strymer-logo').addClass('hide')
-  $('.strymer-welcome').addClass('hide')
-  $('.or-text').addClass('hide')
-  $('.top-area').removeClass('hide')
-  console.log(responseData)
+  // $('.sign-up-row').addClass('hide')
+  // $('.sign-in-row').addClass('hide')
+  // $('.strymer-logo').addClass('hide')
+  // $('.strymer-welcome').addClass('hide')
+  // $('.or-text').addClass('hide')
+  // $('.top-area').removeClass('hide')
   store.user = responseData.user
 }
 
@@ -41,22 +41,10 @@ const signInFail = () => {
 }
 
 const signOutSuccess = () => {
-  $('#message').text('You are now signed out!')
-  $('#message').removeClass('alert-danger')
-  $('#message').addClass('alert-success')
-  $('.podcast-index').addClass('hide')
-  $('.top-area').addClass('hide')
-  $('.favorite-index').addClass('hide')
-  $('.episode-index').addClass('hide')
-  $('.favorite-podcast').addClass('hide')
-  $('#password-btn').addClass('hide')
-  $('#sign-out').removeClass('hide')
-  $('.sign-up-row').removeClass('hide')
-  $('.sign-in-row').removeClass('hide')
-  $('.strymer-logo').removeClass('hide')
-  $('.strymer-welcome').removeClass('hide')
-  $('.or-text').removeClass('hide')
-  $('#sign-out').addClass('hide')
+  $('nav').remove()
+  $('main').empty()
+  const introScreen = showIntroScreen()
+  $('main').append(introScreen)
 }
 
 const signOutFail = () => {
