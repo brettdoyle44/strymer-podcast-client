@@ -2,42 +2,39 @@
 
 const store = require('../store')
 const showIntroScreen = require('../templates/sign-up.handlebars')
+const showSuccessMessage = require('../templates/success-message.handlebars')
+const showFailureMessage = require('../templates/success-message.handlebars')
+const successMessage = showSuccessMessage()
+const failureMessage = showFailureMessage()
 
 const signUpSuccess = responseData => {
-  $('#message').text('You signed-up successfully, please sign-in.')
-  $('#message').removeClass('alert-danger')
-  $('#message').addClass('alert-success')
+  $('main').prepend(successMessage)
+  $('.alert-success').text('You signed-up successfully, please sign-in.')
   $('form').trigger('reset')
   $('.sign-up-row').addClass('hide')
   $('.or-text').addClass('hide')
+  $('.alert-success').fadeOut(2000)
 }
 
 const signUpFail = () => {
-  $('#message').text('Something went wrong')
-  $('#message').removeClass('alert-success')
-  $('#message').addClass('alert-danger')
+  const failureMessage = showFailureMessage()
+  $('main').prepend(failureMessage)
+  $('.alert-danger').text('Something went wrong')
   $('form').trigger('reset')
+  $('.alert-danger').fadeOut(2000)
 }
 
 const signInSuccess = responseData => {
-  $('#message').text('You are now signed in!')
-  $('#message').removeClass('alert-danger')
-  $('#message').addClass('alert-success')
   $('form').trigger('reset')
-  // $('.sign-up-row').addClass('hide')
-  // $('.sign-in-row').addClass('hide')
-  // $('.strymer-logo').addClass('hide')
-  // $('.strymer-welcome').addClass('hide')
-  // $('.or-text').addClass('hide')
-  // $('.top-area').removeClass('hide')
+  $('main').empty()
   store.user = responseData.user
 }
 
 const signInFail = () => {
-  $('#message').text('Something went wrong')
-  $('#message').removeClass('alert-success')
-  $('#message').addClass('alert-danger')
+  $('main').prepend(failureMessage)
+  $('.alert-danger').text('Something went wrong')
   $('form').trigger('reset')
+  $('.alert-danger').fadeOut(2000)
 }
 
 const signOutSuccess = () => {
@@ -45,25 +42,28 @@ const signOutSuccess = () => {
   $('main').empty()
   const introScreen = showIntroScreen()
   $('main').append(introScreen)
+  $('main').prepend(successMessage)
+  $('.alert-success').text('You signed-out successfully!')
+  $('.alert-success').fadeOut(2000)
 }
 
 const signOutFail = () => {
-  $('#message').text('Something went wrong')
-  $('#message').removeClass('alert-success')
-  $('#message').addClass('alert-danger')
+  $('main').prepend(failureMessage)
+  $('.alert-danger').text('Something went wrong')
+  $('.alert-danger').fadeOut(2000)
 }
 
 const changePassSuccessful = responseData => {
-  $('#message').text('You changed your password successfully')
-  $('#message').removeClass('alert-danger')
-  $('#message').addClass('alert-success')
+  $('main').prepend(successMessage)
+  $('.alert-success').text('You successfully changed your password.')
   $('form').trigger('reset')
+  $('.alert-success').fadeOut(2000)
 }
 
 const changePassFailure = () => {
-  $('#message').text('Something went wrong')
-  $('#message').removeClass('alert-success')
-  $('#message').addClass('alert-danger')
+  $('main').prepend(failureMessage)
+  $('.alert-danger').text('Something went wrong')
+  $('.alert-danger').fadeOut(2000)
   $('form').trigger('reset')
 }
 

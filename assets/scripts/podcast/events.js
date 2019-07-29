@@ -10,7 +10,6 @@ const clickFavoritesTemplate = require('../templates/favorite-click.handlebars')
 const showEpisodesDivTemplate = require('../templates/episode-index-div.handlebars')
 const showEpisodePodcastTemplate = require('../templates/episode-podcast-info.handlebars')
 const showPodcastIndex = require('../templates/podcast-index-div.handlebars')
-// const showPlaybar = require('../templates/playbar.handlebars')
 
 const removeActive = () => {
   $('#favorites').removeClass('nav-active')
@@ -39,15 +38,18 @@ const onFavoriteClick = event => {
   removeActive()
   $('main').empty()
   $('#favorites').addClass('nav-active')
-  const podcastsHtml = (`
-        <form id="favorite-create">
-          <div class="form-group">
-            <input class="form-control" required type="text" name="playlist[title]" placeholder="Name your favorites list">
-          </div>
-          <button type="submit" class="form-control btn btn-pink">Create Favorite List</button>
-        </form>
-  `)
-  $('.favorite').append(podcastsHtml)
+  api.favoriteList()
+    .then(ui.favoriteListSuccess)
+    .catch(ui.favoriteListFail)
+  // const podcastsHtml = (`
+  //       <form id="favorite-create">
+  //         <div class="form-group">
+  //           <input class="form-control" required type="text" name="playlist[title]" placeholder="Name your favorites list">
+  //         </div>
+  //         <button type="submit" class="form-control btn btn-pink">Create Favorite List</button>
+  //       </form>
+  // `)
+  // $('.favorite').append(podcastsHtml)
 }
 
 const onHomeClick = event => {
@@ -65,6 +67,7 @@ const onFavoriteOpen = event => {
   event.preventDefault()
   $('.podcast-index').addClass('hide')
   $('.favorite-buttons').removeClass('hide')
+  onFavoriteList()
 }
 
 const onFavoriteSubmit = event => {

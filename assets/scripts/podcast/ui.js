@@ -6,7 +6,13 @@ const indexFavoritesTemplate = require('../templates/favorite-index.handlebars')
 const showFavoritesTemplate = require('../templates/favorite-list.handlebars')
 const showNavbarTemplate = require('../templates/navbar.handlebars')
 const showPodcastIndex = require('../templates/podcast-index-div.handlebars')
+// const showFavoritesDiv = require('../templates/favorite-list-div.handlebars')
 const showPlaybar = require('../templates/playbar.handlebars')
+const showSuccessMessage = require('../templates/success-message.handlebars')
+const showFailureMessage = require('../templates/success-message.handlebars')
+const showFullModal = require('../templates/full-screen-modal.handlebars')
+const successMessage = showSuccessMessage()
+const failureMessage = showFailureMessage()
 
 const showPodcastsSuccess = responseData => {
   store.podcasts = responseData.podcasts
@@ -14,17 +20,23 @@ const showPodcastsSuccess = responseData => {
   const navbar = showNavbarTemplate()
   const podcastIndex = showPodcastIndex()
   const playBar = showPlaybar()
+  const fullModal = showFullModal()
   $('body').prepend(navbar)
+  $('main').append(fullModal)
   $('main').append(podcastIndex)
   $('main').append(playBar)
+  $('main').prepend(successMessage)
+  $('.alert-success').text('You signed-up successfully, please sign-in.')
   const podcastsHtml = showPodcastsTemplate({ podcasts: store.podcasts })
   $('.podcast-index').append(podcastsHtml)
+  $('.alert-success').fadeOut(2000)
 }
 
 const showPodcastsFail = () => {
-  $('#message').text('Something went wrong')
-  $('#message').removeClass('alert-success')
-  $('#message').addClass('alert-danger')
+  $('main').empty()
+  $('main').prepend(failureMessage)
+  $('.alert-danger').text('Something went wrong')
+  $('.alert-danger').fadeOut(2000)
 }
 
 const favoriteSubmitSuccess = responseData => {
@@ -57,10 +69,13 @@ const favoriteAddFail = () => {
 const favoriteListSuccess = responseData => {
   store.favoriteList = responseData
   console.log(store.favoriteList)
-  $('.favorite-list').html('')
+  $('main').empty()
+  // const listFavorites = showFavoritesTemplate()
+  // const favoriteDiv = showFavoritesDiv()
+  // $('main').append(favoriteDiv)
+  // $('main').append(listFavorites)
   const podcastsHtml = showFavoritesTemplate({ playlists: store.favoriteList.playlists })
-  $('.favorite-list').append(podcastsHtml)
-  $('.favorite-index').addClass('hide')
+  $('main').append(podcastsHtml)
 }
 
 const favoriteListFail = () => {
