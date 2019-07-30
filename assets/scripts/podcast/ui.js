@@ -8,7 +8,7 @@ const showFavoritesTemplate = require('../templates/favorite-list.handlebars')
 const showNavbarTemplate = require('../templates/navbar.handlebars')
 const showPodcastIndex = require('../templates/podcast-index-div.handlebars')
 // const showFavoritesDiv = require('../templates/favorite-list-div.handlebars')
-const showPlaybar = require('../templates/playbar.handlebars')
+// const showPlaybar = require('../templates/playbar.handlebars')
 const showSuccessMessage = require('../templates/success-message.handlebars')
 const showFailureMessage = require('../templates/success-message.handlebars')
 const showFullModal = require('../templates/full-screen-modal.handlebars')
@@ -21,7 +21,7 @@ const showPodcastsSuccess = responseData => {
   const navbar = showNavbarTemplate()
   $('head').append('<link id="addSheet" rel="stylesheet" href="assets/css/push.css">')
   const podcastIndex = showPodcastIndex()
-  const playBar = showPlaybar()
+  // const playBar = showPlaybar()
   const fullModal = showFullModal()
   api.favoriteList()
     .then(favoriteListSuccess)
@@ -29,29 +29,30 @@ const showPodcastsSuccess = responseData => {
   $('body').prepend(navbar)
   $('main').append(fullModal)
   $('main').append(podcastIndex)
-  $('main').append(playBar)
+  // $('main').append(playBar)
   $('main').prepend(successMessage)
   $('.alert-success').text('You signed-up successfully, please sign-in.')
   const podcastsHtml = showPodcastsTemplate({ podcasts: store.podcasts })
   $('.podcast-index').append(podcastsHtml)
-  $('.alert-success').fadeOut(2000)
+  $('.alert-success').fadeOut(1500)
 }
 
 const showPodcastsFail = () => {
   $('main').empty()
   $('main').prepend(failureMessage)
   $('.alert-danger').text('Something went wrong')
-  $('.alert-danger').fadeOut(2000)
+  $('.alert-danger').fadeOut(1500)
 }
 
 const favoriteSubmitSuccess = responseData => {
   store.playlists = responseData
   $('main').empty()
   const fullModal = showFullModal()
+  const podcastIndex = showPodcastIndex()
+  $('main').append(podcastIndex)
   $('main').append(fullModal)
   const podcastsHtml = indexFavoritesTemplate({ podcasts: store.podcasts })
-  $('.favorite-index').append(podcastsHtml)
-  $('#favorite-create').addClass('hide')
+  $('.podcast-index').append(podcastsHtml)
 }
 
 const favoriteSubmitFail = () => {
@@ -64,6 +65,7 @@ const favoriteAddSuccess = responseData => {
   $('#message').text('Podcast successfully added')
   $('#message').removeClass('alert-danger')
   $('#message').addClass('alert-success')
+  // $('.card-click-add').addClass('hide')
 }
 
 const favoriteAddFail = () => {

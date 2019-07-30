@@ -70,6 +70,7 @@ const onFavoriteOpen = event => {
 
 const onFavoriteSubmit = event => {
   event.preventDefault()
+  $('#myModal').modal('hide')
   const form = event.target
   const formData = getFormFields(form)
   api.favoriteSubmit(formData)
@@ -77,13 +78,16 @@ const onFavoriteSubmit = event => {
     .catch(ui.favoriteSubmitFail)
 }
 
+// Handles adding podcasts to playlist
 const onPodcastAddClick = event => {
   event.preventDefault()
   const target = event.target
   const currentPodcast = $(target).data('podcast')
+  console.log(currentPodcast)
   const currentPlaylist = store.playlists.playlist.id
   api.favoriteAdd(currentPodcast, currentPlaylist)
     .then(ui.favoriteAddSuccess)
+    .then($(target).parent('div').addClass('hide'))
     .catch(ui.favoriteAddFail)
 }
 

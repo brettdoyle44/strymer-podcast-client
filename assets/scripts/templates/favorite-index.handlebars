@@ -1,14 +1,8 @@
 
 {{#each podcasts as |podcast index|}}
-
-<div class="click-me col-4 mt-5">
-<div class="card" style="width: 18rem;">
+<div class="card-click-add col- mt-5 px-3">
+<div class="card mx-auto" style="width: 18rem;">
   <img src="{{podcast.image}}" data-cell-index="{{index}}" data-podcast="{{podcast.id}}" class="card-img-top card-click-add" alt="...">
-  <div class="overlay">
-    <a href="#" class="icon" title="User Profile">
-      <i class="fas fa-plus"></i>
-    </a>
-  </div>
   <div class="card-body">
     <h5 class="card-title">{{podcast.title}}</h5>
     <p class="card-text">{{podcast.publisher}}</p>

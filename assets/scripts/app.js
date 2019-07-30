@@ -16,6 +16,7 @@ $(() => {
   $('body').on('click', '.card-click', podcastEvents.onPodcastClick)
   $('body').on('click', '#favorites', podcastEvents.onFavoriteClick)
   $('body').on('submit', '#favorite-create', podcastEvents.onFavoriteSubmit)
+  // This is to add podcast to favorite list
   $('body').on('click', '.card-click-add', podcastEvents.onPodcastAddClick)
   $('body').on('click', '#list-favorites', podcastEvents.onFavoriteList)
   $('body').on('click', '.favorite-item', podcastEvents.onFavoriteListClick)
