@@ -43,6 +43,7 @@ const signOutSuccess = () => {
   const introScreen = showIntroScreen()
   $('main').append(introScreen)
   $('main').prepend(successMessage)
+  $('#addSheet').remove()
   $('.alert-success').text('You signed-out successfully!')
   $('.alert-success').fadeOut(2000)
 }

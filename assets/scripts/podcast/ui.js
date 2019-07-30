@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const api = require('./api')
 const showPodcastsTemplate = require('../templates/podcast-list.handlebars')
 const indexFavoritesTemplate = require('../templates/favorite-index.handlebars')
 const showFavoritesTemplate = require('../templates/favorite-list.handlebars')
@@ -18,9 +19,13 @@ const showPodcastsSuccess = responseData => {
   store.podcasts = responseData.podcasts
   $('main').empty()
   const navbar = showNavbarTemplate()
+  $('head').append('<link id="addSheet" rel="stylesheet" href="assets/css/push.css">')
   const podcastIndex = showPodcastIndex()
   const playBar = showPlaybar()
   const fullModal = showFullModal()
+  api.favoriteList()
+    .then(favoriteListSuccess)
+    .catch(favoriteListFail)
   $('body').prepend(navbar)
   $('main').append(fullModal)
   $('main').append(podcastIndex)
@@ -40,9 +45,10 @@ const showPodcastsFail = () => {
 }
 
 const favoriteSubmitSuccess = responseData => {
-  $('#favorites').removeClass('hide')
   store.playlists = responseData
-  $('.favorite-index').html('')
+  $('main').empty()
+  const fullModal = showFullModal()
+  $('main').append(fullModal)
   const podcastsHtml = indexFavoritesTemplate({ podcasts: store.podcasts })
   $('.favorite-index').append(podcastsHtml)
   $('#favorite-create').addClass('hide')
@@ -69,13 +75,8 @@ const favoriteAddFail = () => {
 const favoriteListSuccess = responseData => {
   store.favoriteList = responseData
   console.log(store.favoriteList)
-  $('main').empty()
-  // const listFavorites = showFavoritesTemplate()
-  // const favoriteDiv = showFavoritesDiv()
-  // $('main').append(favoriteDiv)
-  // $('main').append(listFavorites)
   const podcastsHtml = showFavoritesTemplate({ playlists: store.favoriteList.playlists })
-  $('main').append(podcastsHtml)
+  $('.fav-nav').append(podcastsHtml)
 }
 
 const favoriteListFail = () => {

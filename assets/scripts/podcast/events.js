@@ -10,6 +10,7 @@ const clickFavoritesTemplate = require('../templates/favorite-click.handlebars')
 const showEpisodesDivTemplate = require('../templates/episode-index-div.handlebars')
 const showEpisodePodcastTemplate = require('../templates/episode-podcast-info.handlebars')
 const showPodcastIndex = require('../templates/podcast-index-div.handlebars')
+const showFullModal = require('../templates/full-screen-modal.handlebars')
 
 const removeActive = () => {
   $('#favorites').removeClass('nav-active')
@@ -26,6 +27,8 @@ const onPodcastClick = event => {
   const currentPodcast = store.podcasts[index]
   const episodePodcast = showEpisodePodcastTemplate({currentPodcast})
   const episodeIndex = showEpisodesDivTemplate()
+  const fullModal = showFullModal()
+  $('main').append(fullModal)
   $('main').append(episodePodcast)
   $('main').append(episodeIndex)
   const podcastsHtml = showEpisodesTemplate({ episodes: currentPodcast.episodes })
@@ -37,19 +40,12 @@ const onFavoriteClick = event => {
   event.preventDefault()
   removeActive()
   $('main').empty()
+  const fullModal = showFullModal()
+  $('main').append(fullModal)
   $('#favorites').addClass('nav-active')
   api.favoriteList()
     .then(ui.favoriteListSuccess)
     .catch(ui.favoriteListFail)
-  // const podcastsHtml = (`
-  //       <form id="favorite-create">
-  //         <div class="form-group">
-  //           <input class="form-control" required type="text" name="playlist[title]" placeholder="Name your favorites list">
-  //         </div>
-  //         <button type="submit" class="form-control btn btn-pink">Create Favorite List</button>
-  //       </form>
-  // `)
-  // $('.favorite').append(podcastsHtml)
 }
 
 const onHomeClick = event => {
@@ -57,6 +53,8 @@ const onHomeClick = event => {
   removeActive()
   $('#home').addClass('nav-active')
   $('main').empty()
+  const fullModal = showFullModal()
+  $('main').append(fullModal)
   const podcastIndex = showPodcastIndex()
   $('main').append(podcastIndex)
   const podcastsHtml = showPodcastsTemplate({ podcasts: store.podcasts })
@@ -99,13 +97,17 @@ const onFavoriteList = event => {
 const onFavoriteListClick = event => {
   event.preventDefault()
   const target = event.target
-  console.log(target)
+  $('main').empty()
   const index = $(target).data('favorite-list')
   const currentPodcast = store.favoriteList.playlists[index]
-  console.log(currentPodcast)
-  $('.favorite-podcast').html('')
+  const showPodcastsDiv = showPodcastIndex()
+  const fullModal = showFullModal()
+  $('main').append(fullModal)
+  $('main').append(showPodcastsDiv)
+  const podcastsTitle = (`<div class="col-12 mt-5" style="color: #ffffff;"><h1>${currentPodcast.title}</h1></div>`)
   const podcastsHtml = clickFavoritesTemplate({ podcasts: currentPodcast.podcasts })
-  $('.favorite-podcast').append(podcastsHtml)
+  $('.podcast-index').append(podcastsTitle)
+  $('.podcast-index').append(podcastsHtml)
 }
 
 const onDeleteFavorite = event => {

@@ -7,6 +7,7 @@ h3 {
 
 body {
   background-color: #1d212c;
+  // background-color: #03042e;
 }
 
 body {
@@ -17,10 +18,34 @@ body {
     padding-top: 0;
   }
 }
-@media (min-width:768px) {
-  body {
-    margin-left: 232px;
-  }
+
+#foo {
+    align-items: center;
+    display: flex;
+}
+
+.favorites-form .form-control {
+  font-size: 3.5rem;
+  background-color: rgba(0,0,0,1);
+  border-top: 1px solid #ced4da;
+  border-bottom: 1px solid #ced4da;
+  border-left: none;
+  border-right: none;
+}
+
+.modal-head {
+  font-size: 3.5rem;
+  color: #fff;
+}
+
+.close {
+  float: none;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 1;
 }
 
 .navbar.fixed-left {
@@ -75,8 +100,18 @@ body {
   }
 }
 
+.modal-button {
+  text-decoration: none;
+  color: #fff;
+}
+
 .podcast-text {
   color: #ffffff;
+}
+
+.nav-fav {
+  display: block;
+  padding: 0.5rem 0.5rem;
 }
 
 .bg-sand {
@@ -117,9 +152,13 @@ body {
   display: none;
 }
 
-.nav-hover {
+.nav-hover a {
+  text-decoration: none;
+}
+
+.nav-hover:hover {
   cursor: pointer;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .overlay {
@@ -243,8 +282,11 @@ body {
   margin-left: 140px;
 }
 
-.fa-plus-square {
-  font-size: 2em;
+.fa-plus-square,
+.fa-user-circle,
+.fa-home {
+  font-size: 1.5em;
+  margin-right:5px;
 }
 
 .modal-full {
@@ -254,5 +296,5 @@ body {
 
 .modal-full .modal-content {
     min-height: 100vh;
-    background-color: rgba(0,0,0,0.3)
+    background-color: rgba(0,0,0,1)
 }

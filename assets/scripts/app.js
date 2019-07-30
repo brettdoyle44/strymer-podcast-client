@@ -18,7 +18,7 @@ $(() => {
   $('body').on('submit', '#favorite-create', podcastEvents.onFavoriteSubmit)
   $('body').on('click', '.card-click-add', podcastEvents.onPodcastAddClick)
   $('body').on('click', '#list-favorites', podcastEvents.onFavoriteList)
-  $('body').on('click', '.favorite-card', podcastEvents.onFavoriteListClick)
+  $('body').on('click', '.favorite-item', podcastEvents.onFavoriteListClick)
   $('body').on('click', '#delete-favorite', podcastEvents.onDeleteFavorite)
   $('body').on('submit', '.edit-form', podcastEvents.onEditFavoriteSubmit)
   $('body').on('click', '#favorites-open', podcastEvents.onFavoriteOpen)
