@@ -12,6 +12,7 @@ const showPodcastIndex = require('../templates/podcast-index-div.handlebars')
 const showSuccessMessage = require('../templates/success-message.handlebars')
 const showFailureMessage = require('../templates/success-message.handlebars')
 const showFullModal = require('../templates/full-screen-modal.handlebars')
+const showFavTitleDiv = require('../templates/fav-title-show-div.handlebars')
 const successMessage = showSuccessMessage()
 const failureMessage = showFailureMessage()
 
@@ -49,6 +50,8 @@ const favoriteSubmitSuccess = responseData => {
   $('main').empty()
   const fullModal = showFullModal()
   const podcastIndex = showPodcastIndex()
+  const playlistTitle = (`<div class="col-12 mt-5 text-center" style="color: #ffffff;"><h1><strong>Add podcasts to ${store.playlists.playlist.title}</strong></h1></div>`)
+  $('main').append(playlistTitle)
   $('main').append(podcastIndex)
   $('main').append(fullModal)
   const podcastsHtml = indexFavoritesTemplate({ podcasts: store.podcasts })
@@ -100,10 +103,17 @@ const favoriteListDeleteFail = () => {
 }
 
 const favoriteListEditSuccess = responseData => {
-  $('.favorite-list').html('')
-  $('#message').text('Favorite list updated')
-  $('#message').removeClass('alert-danger')
-  $('#message').addClass('alert-success')
+  $('.fav-title-show').empty()
+  const podcastsTitle = (`<div class="col-12 mt-5 justify-content-center text-center hide edit-fav-title" style="color: #ffffff;">
+  <form class="edit-form" data-playlist-edit="${responseData.playlist.id}">
+    <div class="form-group edit-favorites-form pb-1">
+      <input class="form-control text-center" required type="text" name="playlist[title]" placeholder="New title here">
+    </div>
+    <button class="form-control btn btn-pink" style="width: 200px;">Submit</button>
+  </form>
+    </div><div class="col-12 mt-5 text-center fav-title-hide" style="color: #ffffff;"><h1><strong>${responseData.playlist.title}</strong></h1></div>
+  <div class="col-12 mt-2 text-center fav-title-hide"><button id="delete-favorite" class="btn btn-pink" data-playlist-delete="${responseData.playlist.id}">Delete This List</button> <button id="edit-open" class="btn btn-pink" data-playlist-edit="${responseData.playlist.id}">Edit The Title</button></div>`)
+  $('.fav-title-show').append(podcastsTitle)
 }
 
 const favoriteListEditFail = () => {

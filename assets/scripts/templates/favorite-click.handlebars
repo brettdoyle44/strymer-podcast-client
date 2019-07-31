@@ -1,10 +1,10 @@
 
 {{#each podcasts as |podcast index|}}
-<div class="click-me col-4 mt-5">
+<div class="click-me col- mt-5 px-3">
 <div class="card" style="width: 18rem;">
 <img src="{{podcast.image}}" data-cell-index="{{index}}" class="card-img-top card-click" alt="...">
 <div class="card-body">
-  <h5 class="card-title">{{podcast.title}}</h5>
+  <h5 class="card-title">{{limit podcast.title 20}}</h5>
   <p class="card-text">{{podcast.publisher}}</p>
   </div>
 </div>

@@ -21,7 +21,9 @@ $(() => {
   $('body').on('click', '#list-favorites', podcastEvents.onFavoriteList)
   $('body').on('click', '.favorite-item', podcastEvents.onFavoriteListClick)
   $('body').on('click', '#delete-favorite', podcastEvents.onDeleteFavorite)
+  // Edit the title of favorite list
   $('body').on('submit', '.edit-form', podcastEvents.onEditFavoriteSubmit)
   $('body').on('click', '#favorites-open', podcastEvents.onFavoriteOpen)
   $('body').on('click', '#home', podcastEvents.onHomeClick)
+  $('body').on('click', '#edit-open', podcastEvents.onEditOpen)
 })

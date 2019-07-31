@@ -11,6 +11,7 @@ const showEpisodesDivTemplate = require('../templates/episode-index-div.handleba
 const showEpisodePodcastTemplate = require('../templates/episode-podcast-info.handlebars')
 const showPodcastIndex = require('../templates/podcast-index-div.handlebars')
 const showFullModal = require('../templates/full-screen-modal.handlebars')
+const showFavTitleDiv = require('../templates/fav-title-show-div.handlebars')
 
 const removeActive = () => {
   $('#favorites').removeClass('nav-active')
@@ -87,7 +88,7 @@ const onPodcastAddClick = event => {
   const currentPlaylist = store.playlists.playlist.id
   api.favoriteAdd(currentPodcast, currentPlaylist)
     .then(ui.favoriteAddSuccess)
-    .then($(target).parent('div').addClass('hide'))
+    .then($(target).parent('div').fadeOut(1000))
     .catch(ui.favoriteAddFail)
 }
 
@@ -106,11 +107,21 @@ const onFavoriteListClick = event => {
   const currentPodcast = store.favoriteList.playlists[index]
   const showPodcastsDiv = showPodcastIndex()
   const fullModal = showFullModal()
+  const favTitleDiv = showFavTitleDiv()
   $('main').append(fullModal)
+  $('main').append(favTitleDiv)
   $('main').append(showPodcastsDiv)
-  const podcastsTitle = (`<div class="col-12 mt-5" style="color: #ffffff;"><h1>${currentPodcast.title}</h1></div>`)
+  const podcastsTitle = (`<div class="col-12 mt-5 justify-content-center text-center hide edit-fav-title" style="color: #ffffff;">
+  <form class="edit-form" data-playlist-edit="${currentPodcast.id}">
+    <div class="form-group edit-favorites-form pb-1">
+      <input class="form-control text-center" required type="text" name="playlist[title]" placeholder="New title here">
+    </div>
+    <button class="form-control btn btn-pink" style="width: 200px;">Submit</button>
+  </form>
+    </div><div class="col-12 mt-5 text-center fav-title-hide" style="color: #ffffff;"><h1><strong>${currentPodcast.title}</strong></h1></div>
+  <div class="col-12 mt-2 text-center fav-title-hide"><button id="delete-favorite" class="btn btn-pink" data-playlist-delete="${currentPodcast.id}">Delete This List</button> <button id="edit-open" class="btn btn-pink" data-playlist-edit="${currentPodcast.id}">Edit The Title</button></div>`)
   const podcastsHtml = clickFavoritesTemplate({ podcasts: currentPodcast.podcasts })
-  $('.podcast-index').append(podcastsTitle)
+  $('.fav-title-show').append(podcastsTitle)
   $('.podcast-index').append(podcastsHtml)
 }
 
@@ -133,6 +144,11 @@ const onEditFavoriteSubmit = event => {
     .catch(ui.favoriteListEditFail)
 }
 
+const onEditOpen = event => {
+  $('.edit-fav-title').removeClass('hide')
+  $('.fav-title-hide').addClass('hide')
+}
+
 module.exports = {
   onPodcastClick,
   onFavoriteClick,
@@ -143,5 +159,6 @@ module.exports = {
   onDeleteFavorite,
   onEditFavoriteSubmit,
   onFavoriteOpen,
-  onHomeClick
+  onHomeClick,
+  onEditOpen
 }
