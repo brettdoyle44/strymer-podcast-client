@@ -12,9 +12,14 @@ const showPodcastIndex = require('../templates/podcast-index-div.handlebars')
 const showSuccessMessage = require('../templates/success-message.handlebars')
 const showFailureMessage = require('../templates/success-message.handlebars')
 const showFullModal = require('../templates/full-screen-modal.handlebars')
-const showFavTitleDiv = require('../templates/fav-title-show-div.handlebars')
 const successMessage = showSuccessMessage()
 const failureMessage = showFailureMessage()
+
+// const removeActive = () => {
+//   $('#favorites').removeClass('nav-active')
+//   $('#settings').removeClass('nav-active')
+//   $('#home').removeClass('nav-active')
+// }
 
 const showPodcastsSuccess = responseData => {
   store.podcasts = responseData.podcasts
@@ -50,7 +55,8 @@ const favoriteSubmitSuccess = responseData => {
   $('main').empty()
   const fullModal = showFullModal()
   const podcastIndex = showPodcastIndex()
-  const playlistTitle = (`<div class="col-12 mt-5 text-center" style="color: #ffffff;"><h1><strong>Add podcasts to ${store.playlists.playlist.title}</strong></h1></div>`)
+  const playlistTitle = (`<div class="col-12 mt-5 text-center" style="color: #ffffff;"><h1><strong>Add podcasts to ${store.playlists.playlist.title}</strong></h1></div>
+  <div class="col-12 mt-2 text-center fav-done"><button id="done-add" class="btn btn-pink">Done Adding Podcasts</button></div>`)
   $('main').append(playlistTitle)
   $('main').append(podcastIndex)
   $('main').append(fullModal)
@@ -91,9 +97,25 @@ const favoriteListFail = () => {
 }
 
 const favoriteListDeleteSuccess = responseData => {
-  $('#message').text('Favorite list successfully deleted')
-  $('#message').removeClass('alert-danger')
-  $('#message').addClass('alert-success')
+  const main = ('<main class="container-fluid"></main>')
+  $('body').empty()
+  $('body').append(main)
+  const navbar = showNavbarTemplate()
+  const podcastIndex = showPodcastIndex()
+  // const playBar = showPlaybar()
+  const fullModal = showFullModal()
+  api.favoriteList()
+    .then(favoriteListSuccess)
+    .catch(favoriteListFail)
+  $('body').prepend(navbar)
+  $('main').append(fullModal)
+  $('main').append(podcastIndex)
+  // $('main').append(playBar)
+  $('main').prepend(successMessage)
+  $('.alert-success').text('You have successfully deleted a favorite list')
+  const podcastsHtml = showPodcastsTemplate({ podcasts: store.podcasts })
+  $('.podcast-index').append(podcastsHtml)
+  $('.alert-success').fadeOut(1500)
 }
 
 const favoriteListDeleteFail = () => {

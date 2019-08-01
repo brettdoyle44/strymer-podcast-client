@@ -12,6 +12,9 @@ const showEpisodePodcastTemplate = require('../templates/episode-podcast-info.ha
 const showPodcastIndex = require('../templates/podcast-index-div.handlebars')
 const showFullModal = require('../templates/full-screen-modal.handlebars')
 const showFavTitleDiv = require('../templates/fav-title-show-div.handlebars')
+const showNavbarTemplate = require('../templates/navbar.handlebars')
+const showSuccessMessage = require('../templates/success-message.handlebars')
+const successMessage = showSuccessMessage()
 
 const removeActive = () => {
   $('#favorites').removeClass('nav-active')
@@ -149,6 +152,29 @@ const onEditOpen = event => {
   $('.fav-title-hide').addClass('hide')
 }
 
+const onFavoriteAddDone = event => {
+  event.preventDefault()
+  const main = ('<main class="container-fluid"></main>')
+  $('body').empty()
+  $('body').append(main)
+  const navbar = showNavbarTemplate()
+  const podcastIndex = showPodcastIndex()
+  // const playBar = showPlaybar()
+  const fullModal = showFullModal()
+  api.favoriteList()
+    .then(ui.favoriteListSuccess)
+    .catch(ui.favoriteListFail)
+  $('body').prepend(navbar)
+  $('main').append(fullModal)
+  $('main').append(podcastIndex)
+  // $('main').append(playBar)
+  $('main').prepend(successMessage)
+  $('.alert-success').text('You have successfully created a favorite list')
+  const podcastsHtml = showPodcastsTemplate({ podcasts: store.podcasts })
+  $('.podcast-index').append(podcastsHtml)
+  $('.alert-success').fadeOut(1500)
+}
+
 module.exports = {
   onPodcastClick,
   onFavoriteClick,
@@ -160,5 +186,6 @@ module.exports = {
   onEditFavoriteSubmit,
   onFavoriteOpen,
   onHomeClick,
-  onEditOpen
+  onEditOpen,
+  onFavoriteAddDone
 }

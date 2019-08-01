@@ -24,6 +24,7 @@ $(() => {
   // Edit the title of favorite list
   $('body').on('submit', '.edit-form', podcastEvents.onEditFavoriteSubmit)
   $('body').on('click', '#favorites-open', podcastEvents.onFavoriteOpen)
+  $('body').on('click', '#done-add', podcastEvents.onFavoriteAddDone)
   $('body').on('click', '#home', podcastEvents.onHomeClick)
   $('body').on('click', '#edit-open', podcastEvents.onEditOpen)
 })
