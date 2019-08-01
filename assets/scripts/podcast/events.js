@@ -87,7 +87,6 @@ const onPodcastAddClick = event => {
   event.preventDefault()
   const target = event.target
   const currentPodcast = $(target).data('podcast')
-  console.log(currentPodcast)
   const currentPlaylist = store.playlists.playlist.id
   api.favoriteAdd(currentPodcast, currentPlaylist)
     .then(ui.favoriteAddSuccess)

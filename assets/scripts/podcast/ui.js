@@ -85,7 +85,6 @@ const favoriteAddFail = () => {
 
 const favoriteListSuccess = responseData => {
   store.favoriteList = responseData
-  console.log(store.favoriteList)
   const podcastsHtml = showFavoritesTemplate({ playlists: store.favoriteList.playlists })
   $('.fav-nav').append(podcastsHtml)
 }
