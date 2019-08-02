@@ -37,7 +37,7 @@ const showPodcastsSuccess = responseData => {
   $('main').append(podcastIndex)
   // $('main').append(playBar)
   $('main').prepend(successMessage)
-  $('.alert-success').text('You signed-up successfully, please sign-in.')
+  $('.alert-success').text('You signed-in successfully!')
   const podcastsHtml = showPodcastsTemplate({ podcasts: store.podcasts })
   $('.podcast-index').append(podcastsHtml)
   $('.alert-success').fadeOut(1500)

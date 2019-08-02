@@ -24,6 +24,10 @@ body {
     display: flex;
 }
 
+.list-item li {
+   list-style-type: none;
+}
+
 .favorites-form .form-control {
   font-size: 3.5rem;
   background-color: rgba(30,33,44,0.9);
@@ -173,11 +177,18 @@ body {
 
 .nav-fav {
   display: block;
-  padding: 0.5rem 0.5rem;
+  padding: 1rem 0.5rem 0 0.5rem;
+}
+
+hr.style-six {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .bg-sand {
-  background-color: #000;
+  background-color: #181a23;
 }
 
 .nav-active {
@@ -193,6 +204,11 @@ body {
 .btn-pink:hover {
   opacity: 0.9;
   color: #fff;
+}
+
+.media-hover:hover {
+  background-color: rgba(59,72,92,0.8);
+  cursor: pointer;
 }
 
 .card-click:hover {
@@ -216,6 +232,8 @@ body {
 
 .nav-hover a {
   text-decoration: none;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-hover:hover {

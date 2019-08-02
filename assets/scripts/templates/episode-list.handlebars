@@ -1,5 +1,44 @@
+<div class="row mt-2">
+  <div class="col-2">
+  </div>
+  <div class="col-8 py-3">
+    <div class="d-flex w-100 justify-content-between" style="color: #ffffff;">
+          <h4 class="mb-1">Episodes</h4>
+  </div>
+  <hr class="style-six">
+  <div class="col-2">
+  </div>
+</div>
+</div>
 {{#each episodes as |episode|}}
-<i class="fas fa-play"></i>
-<li style="color: #ffffff;" data-current-audio="{{episode.audio}}" class="list-item pt-5"><h3>{{episode.title}}</h3><br>{{episode.description}}</li>
-<hr class="mt-5" style="height:1px; border:none; color:#fff; background-color:#fff; width:60%; text-align:left; margin: 0 auto 0 0;">
+  <div class="row mt-2">
+    <div class="col-2">
+    </div>
+    <div class="col-8 media-hover py-3" data-audio="{{episode.audio}}">
+      <div class="d-flex w-100 justify-content-between" style="color: #ffffff;">
+            <h5 class="mb-1">{{episode.title}}</h5>
+            <small>{{math episode.length}} mins</small>
+          </div>
+          <p class="mb-1" style="color: #ffffff;">{{episode.description}}</p>
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
 {{/each}}
+
+<!-- <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">List group item heading</h5>
+      <small>3 days ago</small>
+    </div>
+    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+
+
+    <div class="media media-hover p-2" style="color:#fff;">
+      <span id="foo"><i class="fas fa-play mr-3"></i>
+        <div class="media-body d-flex justify-content-between">
+          <h5 class="mt-0">{{episode.title}}</h5>
+          {{episode.description}}
+        </div>
+      </span>
+      <span class="badge badge-primary badge-pill" style="text-align: right;">{{math episode.length}} mins</span>
+    </div> -->

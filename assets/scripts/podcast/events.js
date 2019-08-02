@@ -36,7 +36,7 @@ const onPodcastClick = event => {
   $('main').append(episodePodcast)
   $('main').append(episodeIndex)
   const podcastsHtml = showEpisodesTemplate({ episodes: currentPodcast.episodes })
-  $('.episode-list').append(podcastsHtml)
+  $('.episode-index').append(podcastsHtml)
   // const episodeAudio = new Audio(episode.audio)
 }
 
