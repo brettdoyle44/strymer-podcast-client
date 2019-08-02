@@ -25,7 +25,7 @@ const showPodcastsSuccess = responseData => {
   store.podcasts = responseData.podcasts
   $('main').empty()
   const navbar = showNavbarTemplate()
-  $('head').append('<link id="addSheet" rel="stylesheet" href="assets/css/push.css">')
+  $('head').append('<link id="addSheet" rel="stylesheet" href="./public/push.css">')
   const podcastIndex = showPodcastIndex()
   // const playBar = showPlaybar()
   const fullModal = showFullModal()
