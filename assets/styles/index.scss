@@ -28,6 +28,14 @@ body {
    list-style-type: none;
 }
 
+hr.style-one {
+    border: 0;
+    height: 1px;
+    background: #fff;
+
+}
+
+
 .favorites-form .form-control {
   font-size: 3.5rem;
   background-color: rgba(30,33,44,0.9);
@@ -180,13 +188,6 @@ body {
   padding: 1rem 0.5rem 0 0.5rem;
 }
 
-hr.style-six {
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.6)z;
-}
-
 .bg-sand {
   background-color: #181a23;
 }
@@ -281,6 +282,16 @@ hr.style-six {
   margin-bottom: 15px;
   border: 1px solid #ffffff;
 }
+
+.fa-pause-circle {
+  color: #ef1860;
+  font-size: 50px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  margin-bottom: 15px;
+  border: 1px solid #ffffff;
+}
+
 @-webkit-keyframes slideInDown {
   from {
     -webkit-transform: translate3d(0, -100%, 0);

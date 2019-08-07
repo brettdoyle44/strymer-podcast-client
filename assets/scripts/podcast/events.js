@@ -14,7 +14,18 @@ const showFullModal = require('../templates/full-screen-modal.handlebars')
 const showFavTitleDiv = require('../templates/fav-title-show-div.handlebars')
 const showNavbarTemplate = require('../templates/navbar.handlebars')
 const showSuccessMessage = require('../templates/success-message.handlebars')
+const showPlayBar = require('../templates/playbar.handlebars')
 const successMessage = showSuccessMessage()
+
+const playAudio = (url) => {
+  const a = new Audio(url)
+  a.play()
+}
+
+const pauseAudio = (url) => {
+  const a = new Audio(url)
+  a.pause()
+}
 
 const removeActive = () => {
   $('#favorites').removeClass('nav-active')
@@ -28,7 +39,8 @@ const onPodcastClick = event => {
   removeActive()
   $('main').empty()
   const index = $(target).data('cell-index')
-  const currentPodcast = store.podcasts[index]
+  store.currentPodcast = store.podcasts[index]
+  const currentPodcast = store.currentPodcast
   const episodePodcast = showEpisodePodcastTemplate({currentPodcast})
   const episodeIndex = showEpisodesDivTemplate()
   const fullModal = showFullModal()
@@ -37,7 +49,6 @@ const onPodcastClick = event => {
   $('main').append(episodeIndex)
   const podcastsHtml = showEpisodesTemplate({ episodes: currentPodcast.episodes })
   $('.episode-index').append(podcastsHtml)
-  // const episodeAudio = new Audio(episode.audio)
 }
 
 const onFavoriteClick = event => {
@@ -174,6 +185,25 @@ const onFavoriteAddDone = event => {
   $('.alert-success').fadeOut(1500)
 }
 
+const onPlayClick = event => {
+  event.preventDefault()
+  const target = event.target
+  store.currentAudio = $(target).data('audio')
+  const currentAudio = store.currentAudio
+  playAudio(currentAudio)
+  const currentPodcast = store.currentPodcast
+  const playBar = showPlayBar({currentPodcast}, {currentAudio})
+  $('main').append(playBar)
+}
+
+const onPauseClick = event => {
+  event.preventDefault()
+  const currentAudio = store.currentAudio
+  pauseAudio(currentAudio)
+  $('.play-pause').removeClass('fa-pause-circle')
+  $('.play-pause').addClass('fa-play-circle')
+}
+
 module.exports = {
   onPodcastClick,
   onFavoriteClick,
@@ -186,5 +216,7 @@ module.exports = {
   onFavoriteOpen,
   onHomeClick,
   onEditOpen,
-  onFavoriteAddDone
+  onFavoriteAddDone,
+  onPlayClick,
+  onPauseClick
 }

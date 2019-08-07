@@ -27,4 +27,6 @@ $(() => {
   $('body').on('click', '#done-add', podcastEvents.onFavoriteAddDone)
   $('body').on('click', '#home', podcastEvents.onHomeClick)
   $('body').on('click', '#edit-open', podcastEvents.onEditOpen)
+  $('body').on('click', '.episode-play', podcastEvents.onPlayClick)
+  $('body').on('click', '.fa-pause-circle', podcastEvents.onPauseClick)
 })
