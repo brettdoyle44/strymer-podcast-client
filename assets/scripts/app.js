@@ -28,5 +28,5 @@ $(() => {
   $('body').on('click', '#home', podcastEvents.onHomeClick)
   $('body').on('click', '#edit-open', podcastEvents.onEditOpen)
   $('body').on('click', '.episode-play', podcastEvents.onPlayClick)
-  $('body').on('click', '.fa-pause-circle', podcastEvents.onPauseClick)
+  $('body').on('click', '.play-pause', podcastEvents.onPauseClick)
 })

@@ -17,14 +17,15 @@ const showSuccessMessage = require('../templates/success-message.handlebars')
 const showPlayBar = require('../templates/playbar.handlebars')
 const successMessage = showSuccessMessage()
 
+let audio = false
+
 const playAudio = (url) => {
   const a = new Audio(url)
-  a.play()
-}
-
-const pauseAudio = (url) => {
-  const a = new Audio(url)
-  a.pause()
+  if (audio === false) {
+    a.play()
+  } else {
+    a.pause()
+  }
 }
 
 const removeActive = () => {
@@ -189,6 +190,7 @@ const onPlayClick = event => {
   event.preventDefault()
   const target = event.target
   store.currentAudio = $(target).data('audio')
+  audio = true
   const currentAudio = store.currentAudio
   playAudio(currentAudio)
   const currentPodcast = store.currentPodcast
@@ -198,10 +200,16 @@ const onPlayClick = event => {
 
 const onPauseClick = event => {
   event.preventDefault()
-  const currentAudio = store.currentAudio
-  pauseAudio(currentAudio)
-  $('.play-pause').removeClass('fa-pause-circle')
-  $('.play-pause').addClass('fa-play-circle')
+  // const currentAudio = store.currentAudio
+  audio = false
+  if (audio === false) {
+    $('.play-pause').removeClass('fa-pause-circle')
+    $('.play-pause').addClass('fa-play-circle')
+  } else {
+    $('.play-pause').removeClass('fa-pause-circle')
+    $('.play-pause').addClass('fa-play-circle')
+    audio = true
+  }
 }
 
 module.exports = {

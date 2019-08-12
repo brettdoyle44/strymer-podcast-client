@@ -10,7 +10,7 @@ const showPodcastIndex = require('../templates/podcast-index-div.handlebars')
 // const showFavoritesDiv = require('../templates/favorite-list-div.handlebars')
 // const showPlaybar = require('../templates/playbar.handlebars')
 const showSuccessMessage = require('../templates/success-message.handlebars')
-const showFailureMessage = require('../templates/success-message.handlebars')
+const showFailureMessage = require('../templates/failure-message.handlebars')
 const showFullModal = require('../templates/full-screen-modal.handlebars')
 const successMessage = showSuccessMessage()
 const failureMessage = showFailureMessage()
@@ -65,9 +65,10 @@ const favoriteSubmitSuccess = responseData => {
 }
 
 const favoriteSubmitFail = () => {
-  $('#message').text('Something went wrong')
-  $('#message').removeClass('alert-success')
-  $('#message').addClass('alert-danger')
+  $('main').empty()
+  $('main').prepend(failureMessage)
+  $('.alert-danger').text('Something went wrong')
+  $('.alert-danger').fadeOut(1500)
 }
 
 const favoriteAddSuccess = responseData => {
@@ -78,9 +79,10 @@ const favoriteAddSuccess = responseData => {
 }
 
 const favoriteAddFail = () => {
-  $('#message').text('Podcast not added')
-  $('#message').removeClass('alert-success')
-  $('#message').addClass('alert-danger')
+  $('main').empty()
+  $('main').prepend(failureMessage)
+  $('.alert-danger').text('Something went wrong')
+  $('.alert-danger').fadeOut(1500)
 }
 
 const favoriteListSuccess = responseData => {
@@ -90,9 +92,10 @@ const favoriteListSuccess = responseData => {
 }
 
 const favoriteListFail = () => {
-  $('#message').text('Podcast not added')
-  $('#message').removeClass('alert-success')
-  $('#message').addClass('alert-danger')
+  $('main').empty()
+  $('main').prepend(failureMessage)
+  $('.alert-danger').text('Something went wrong')
+  $('.alert-danger').fadeOut(1500)
 }
 
 const favoriteListDeleteSuccess = responseData => {
@@ -118,13 +121,13 @@ const favoriteListDeleteSuccess = responseData => {
 }
 
 const favoriteListDeleteFail = () => {
-  $('#message').text('Something went wrong')
-  $('#message').removeClass('alert-success')
-  $('#message').addClass('alert-danger')
+  $('main').empty()
+  $('main').prepend(failureMessage)
+  $('.alert-danger').text('Something went wrong')
+  $('.alert-danger').fadeOut(1500)
 }
 
 const favoriteListEditSuccess = responseData => {
-  $('.fav-title-show').empty()
   const podcastsTitle = (`<div class="col-12 mt-5 justify-content-center text-center hide edit-fav-title" style="color: #ffffff;">
   <form class="edit-form" data-playlist-edit="${responseData.playlist.id}">
     <div class="form-group edit-favorites-form pb-1">
@@ -134,13 +137,31 @@ const favoriteListEditSuccess = responseData => {
   </form>
     </div><div class="col-12 mt-5 text-center fav-title-hide" style="color: #ffffff;"><h1><strong>${responseData.playlist.title}</strong></h1></div>
   <div class="col-12 mt-2 text-center fav-title-hide"><button id="delete-favorite" class="btn btn-pink" data-playlist-delete="${responseData.playlist.id}">Delete This List</button> <button id="edit-open" class="btn btn-pink" data-playlist-edit="${responseData.playlist.id}">Edit The Title</button></div>`)
-  $('.fav-title-show').append(podcastsTitle)
+  const main = ('<main class="container-fluid"></main>')
+  $('body').empty()
+  $('body').append(main)
+  const navbar = showNavbarTemplate()
+  const podcastIndex = showPodcastIndex()
+  // const playBar = showPlaybar()
+  const fullModal = showFullModal()
+  api.favoriteList()
+    .then(favoriteListSuccess)
+    .catch(favoriteListFail)
+  $('body').prepend(navbar)
+  $('main').append(fullModal)
+  $('main').append(podcastIndex)
+  // $('main').append(playBar)
+  $('main').prepend(successMessage)
+  $('.alert-success').text('You have successfully edited your favorite list title')
+  $('.fav-title-show').html(podcastsTitle)
+  $('.alert-success').fadeOut(1500)
 }
 
 const favoriteListEditFail = () => {
-  $('#message').text('Something went wrong')
-  $('#message').removeClass('alert-success')
-  $('#message').addClass('alert-danger')
+  $('main').empty()
+  $('main').prepend(failureMessage)
+  $('.alert-danger').text('Something went wrong')
+  $('.alert-danger').fadeOut(1500)
 }
 
 module.exports = {
