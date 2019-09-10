@@ -14,16 +14,25 @@
   <div class="row mt-2">
     <div class="col-2">
     </div>
-    <div class="col-8 media-hover py-3 episode-play" data-audio="{{episode.audio}}">
-      <div class="d-flex w-100 justify-content-between" data-audio="{{episode.audio}}" style="color: #ffffff;">
-            <h5 class="mb-1" data-audio="{{episode.audio}}">{{episode.title}}</h5>
+    <div class="col-8 py-3">
+      <div class="d-flex w-100 justify-content-between" style="color: #ffffff;">
+            <h5 class="mb-1">{{limit episode.title 50}}</h5>
             <small>{{math episode.length}} mins</small>
           </div>
-          <p data-audio="{{episode.audio}}" class="mb-1" style="color: #ffffff;">{{episode.description}}</p>
+          <p class="mb-1" style="color: #ffffff;">{{episode.description}}</p>
     </div>
     <div class="col-2">
     </div>
   </div>
+  <div class="row mt-2">
+    <div class="col-2">
+    </div>
+    <div class="col-8 media-hover py-3 episode-play">
+  <audio controls src="{{episode.audio}}"></audio>
+</div>
+<div class="col-2">
+</div>
+</div>
 {{/each}}
 
 <!-- <div class="d-flex w-100 justify-content-between">

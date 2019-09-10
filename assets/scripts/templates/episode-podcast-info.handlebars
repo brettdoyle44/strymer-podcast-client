@@ -6,7 +6,7 @@
       <img src="{{currentPodcast.image}}" class="mr-3" alt="..." width="200">
       <div class="media-body podcast-text">
         <h5 class="mt-0 podcast-text"><strong>{{currentPodcast.title}}</strong></h5>
-        {{currentPodcast.description}}
+        {{limit currentPodcast.description 300}}
       </div>
     </div>
     <div class="media col-2">
