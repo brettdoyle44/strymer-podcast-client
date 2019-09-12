@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Strymer Podcast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <script src="https://kit.fontawesome.com/a2bd9b1bcc.js"></script>
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body>
+  <main class="container-fluid">
+
+
+
+
+    <div class="row justify-content-center mt-4 strymer-logo">
+      <img src="./public/Strymer-Final-Standalone-Icon.png" width="75" alt="...">
+    </div>
+
+    <div class="row justify-content-center strymer-welcome">
+      <div class="col-8 py-4">
+        <h3><strong>WELCOME TO STRYMER PODCAST</strong></h3>
+      </div>
+    </div>
+
+    <div class="row justify-content-center sign-up-row">
+      <div class="col-6">
+        <form id="sign-up">
+          <div class="form-group">
+            <input class="form-control" required type="email" name="credentials[email]" placeholder="Email" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. Except Facebook who will then share it with the world.</small>
+          </div>
+          <div class="form-group">
+            <input class="form-control" required type="password" name="credentials[password]" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <input class="form-control" required type="password" name="credentials[password_confirmation]" placeholder="Password Confirmation">
+          </div>
+          <button type="submit" class="form-control btn btn-pink">Sign-up</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="row justify-content-center or-text">
+      <div class="col-6 py-4">
+        <h3>-OR-</h3>
+      </div>
+    </div>
+
+
+    <div class="row justify-content-center sign-in-row">
+      <div class="col-6">
+        <form id="sign-in">
+          <div class="form-group">
+            <input class="form-control" required type="email" name="credentials[email]" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <input class="form-control" required type="password" name="credentials[password]" placeholder="Password">
+          </div>
+          <button type="submit" class="form-control btn btn-pink">Sign-in</button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+
+</html>
